@@ -30,32 +30,95 @@
 	
 	
 	<div class="container" style="padding: 25px 50px 75px 50px;">
-	<h1>Here are you results</h1>
-	
-	<h3>Check In</h3>
-	<input type="hidden" value="<%= request.getAttribute("reservation_id") %>" />
-	<h4><%= request.getAttribute("check_in") %></h4>
-	<h3>Check Out</h3>
-	<h4><%= request.getAttribute("check_out") %></h4>
-	<h3>Adults</h3>
-	<h4><%= request.getAttribute("adults") %></h4>
-	<h3>Children</h3>
-	<h4><%= request.getAttribute("children") %></h4>
-	<h3>Room Type</h3>
-	<h4><%= request.getAttribute("room_type") %></h4>
-	<h3>Confirmation Code</h3>
-	<h4><%= request.getAttribute("confirmation_code") %></h4>
-	<h3>Instructions</h3>
-	<h4><%= request.getAttribute("instructions") %></h4><br>
 
 	
 	
-	<form style="display: inline" action="cancel-reservation" method="GET">
-		<input type="hidden" name="reservation_id" value="<%= request.getAttribute("reservation_id") %>" />
-		<button name="cancelled" id="btn2">Cancel Reservation</button>
-	</form>
+	
+	
+	
+	
+	
+	<div style="margin: 0 auto; width: 100%">
+	
+	
+		<div id="wrapper">
+	 		<div style="margin-top: 50px">
+	 			<h3 class="text-center fw-bold h-line">Here are your results</h3>
+	 			<br><br>
+	 		</div>
+	 	</div>
+	
+	
+	
+ 			<div class="card py-3 grow" style="margin: 30px 0px; padding:50px">
+ 				<div class="card-body">
+ 				    <div style="width: 50%; float: left">
+	 				   <h4><strong>Reservation Details:</strong></h4>
+	 				   <br>
+	 				   	<h5><strong>Confirmation Code: </strong>${confirmation_code}</h5>
+	 				   	<h5><strong>Check-in: </strong>${check_in} <strong>Check-out: </strong> ${check_out}</h5> 
+	 				   	<h5><strong>Adults: </strong>${adults}</h5>
+	 				   	<h5><strong>Children: </strong>${children}</h5>
+	 					<h5><strong>Room Type: </strong>${room_type}</h5>
+	 					<h5><strong>Instructions: </strong></h5><h5>${instructions}</h5>
+	 					<%-- <h4>Points: </h4><h5><%=res.getPoints()%></h5> --%>
+	 					<form style="display: inline; margin-top: 50px;" action="cancel-reservation" method="POST">
+							<input type="hidden" value="<%=request.getAttribute("reservation_id")%>" name="reservation_id"/>
+							<button style="display: inline; margin-top: 70px; width: 300px" name="cancelled" id="btn2" onclick="if (!(confirm('Are you sure you want to delete the reservation'))) return false">Cancel Reservation</button>
+						</form>
+						
+						<form action="reservations" method="POST" id="reserveForm">
+  							<input type="hidden" name="user_id" value=<%=session.getAttribute("user_id") %> />
+  							<button style="display: inline; width: 300px" id="btn1">Back to Reservations</button>
+    					</form>
+ 					</div>
+
+ 					<div style="width: 50%; float: left">
+ 						<h4><strong>Hotel Information:</strong></h4>
+ 						<br>
+ 						<h5>${hotel_name}</h5>
+ 						<h5>${address}</h5>
+ 						<h5>${city}, ${state} ${zip} </h5>
+ 						<h5>${phone_number}</h5>
+ 						<br>
+ 						<img style="width: 90%" src="images/${picture}"/>
+						<br><br>
+	 					<h5><strong>Amenities: </strong></h5><h5>${amenities}</h5>
+	 					<h5><strong>Description: </strong></h5><h5>${descrip}</h5>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			
+ 			
+			
+ 		</div>
 	
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
  
  
